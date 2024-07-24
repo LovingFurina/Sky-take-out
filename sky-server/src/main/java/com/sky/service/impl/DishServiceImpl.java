@@ -166,11 +166,11 @@ public class DishServiceImpl implements DishService {
      * @return
      */
     public List<DishVO> listWithFlavor(Dish dish) {
-        List<Dish> dishList = dishMapper.list(dish);
+        List<Dish> dishList = dishMapper.getByCategoryId(dish.getCategoryId(), dish.getStatus());
 
         List<DishVO> dishVOList = new ArrayList<>();
 
-        for (Dish d : dishList) {
+        for (Dish d : dishList) {//构建DishVO
             DishVO dishVO = new DishVO();
             BeanUtils.copyProperties(d,dishVO);
 
@@ -183,6 +183,32 @@ public class DishServiceImpl implements DishService {
 
         return dishVOList;
     }
+
+    /**
+     * 根据分类id获取菜品
+     *
+     * @param categoryId
+     * @return
+     */
+    public List<Dish> getByCategoryId(Long categoryId) {
+        return dishMapper.getByCategoryId(categoryId,null);
+    }
+
+    /**
+     * 起售或停售菜品
+     *
+     * @param id
+     * @param status
+     */
+    public void startOrStop( Integer status,Long id) {
+        Dish dish = new Dish();
+        dish.setStatus(status);
+        dish.setId(id);
+
+        dishMapper.update(dish);
+        //这个update和源码中的updateDish是一样的
+    }
+
 
 
 
