@@ -14,6 +14,7 @@ import com.sky.utils.WeChatPayUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.sky.controller.user.UserController;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     //微信服务接口地址
-    public static final String WX_LOGIN ="http://api.weixin.qq.com/sns/jscode2session";
+    public static final String WX_LOGIN = "https://api.weixin.qq.com/sns/jscode2session";
 
     @Autowired
     private WeChatProperties weChatProperties;
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService {
      */
 
     public User wxLogin(UserLoginDTO userLoginDTO){
+
         String openid =  getOpenid(userLoginDTO.getCode());
 
         //判断openid是否为空，如果为空表示登录失败，抛出业务异常
@@ -75,8 +77,9 @@ public class UserServiceImpl implements UserService {
         map.put("secret",weChatProperties.getSecret());
         map.put("js_code",code);
         map.put("grant_type","authorization_code");
+        //调用工具类，向微信接口服务发送请求
         String json = HttpClientUtil.doGet(WX_LOGIN,map);
-
+        //解析JSON数据，获得openid
         JSONObject jsonObject = JSON.parseObject(json);
         String openid = jsonObject.getString("openid");
 
