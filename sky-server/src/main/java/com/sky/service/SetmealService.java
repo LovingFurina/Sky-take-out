@@ -24,4 +24,43 @@ public interface SetmealService {
      */
     List<DishItemVO> getDishItemById(Long id);
 
+    /**
+     * 分页查询
+     * @param setmealPageQueryDTO
+     * @return
+     */
+    PageResult pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
+
+    /**
+     * 起售停售套餐
+     * @param status
+     * @param id
+     */
+    void startOrStop(Integer status, Long id);
+
+    /**
+     * 修改套餐信息
+     * @param setmealDTO
+     */
+    void updateSetmeal(SetmealDTO setmealDTO);
+
+    /**
+     * 根据id查询套餐
+     * @param id
+     * @return
+     */
+    SetmealVO getDishById(Long id);
+
+    /**
+     * 根据id批量删除套餐
+     * @param ids
+     */
+    void batchDeleteById(List<Long> ids);
+
+    /**
+     * 新增套餐
+     * @param setmealDTO
+     */
+    void insert(SetmealDTO setmealDTO);
+
 }
