@@ -53,6 +53,7 @@ sky:
     appid: ${sky.wechat.appid}
     secret: ${sky.wechat.secret}
 
+
 alioss:
   endpoint:${sky.alioss.endpoint}
   access-key-id:${sky.alioss.access-key-id}
