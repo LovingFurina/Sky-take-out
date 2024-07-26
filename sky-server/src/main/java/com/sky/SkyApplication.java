@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Slf4j
 @EnableConfigurationProperties
 @EnableCaching//开启缓存注解功能
-@EnableScheduling
+@EnableScheduling//开启任务调度
 public class SkyApplication {
     public static void main(String[] args) {
         SpringApplication.run(SkyApplication.class, args);
