@@ -24,8 +24,6 @@ import java.util.Set;
 @RequestMapping("/admin/dish")
 @Slf4j
 @Api(tags ="菜品相关接口")
-
-
 public class DishController {
 
     @Autowired
@@ -149,11 +147,5 @@ public class DishController {
         Set keys =  redisTemplate.keys(pattern);
         redisTemplate.delete(keys);
     }
-
-
-
-
-
-
 
 }
