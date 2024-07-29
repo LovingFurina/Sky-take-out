@@ -66,4 +66,14 @@ public interface OrderMapper {
      */
     @Select("select * from orders where id=#{id}")
     Orders getById(Long id);
+
+    /**
+     * 根据订单好和用户id查询订单
+     * @param outTradeNo
+     * @param userId
+     * @return
+     */
+
+    @Select("select * from orders where number = #{orderNumber} and user_id= #{userId}")
+    Orders getByNumberAndUserId(String outTradeNo, Long userId);
 }
