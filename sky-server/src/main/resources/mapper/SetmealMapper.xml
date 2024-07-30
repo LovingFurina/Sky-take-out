@@ -36,6 +36,7 @@
             </if>
         </where>
     </select>
+
     <select id="pageQuery" resultType="com.sky.entity.Setmeal">
         select * from setmeal
         <where>
